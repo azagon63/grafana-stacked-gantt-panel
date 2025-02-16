@@ -1,5 +1,5 @@
 {
-  "name": "marcusolsson-gantt-panel",
+  "name": "grafana-stacked-gantt-panel",
   "version": "0.8.1",
   "description": "A Gantt visualization for Grafana",
   "keywords": [
@@ -18,16 +18,15 @@
     "test:ci": "jest --passWithNoTests --maxWorkers 4",
     "typecheck": "tsc --noEmit"
   },
-  "homepage": "https://grafana.com/plugins/marcusolsson-gantt-panel",
+  "homepage": "https://grafana.com/plugins/grafana-stacked-gantt-panel",
   "bugs": "https://github.com/marcusolsson/grafana-gantt-panel/issues",
   "repository": "github:marcusolsson/grafana-gantt-panel",
   "author": {
-    "name": "Marcus Olsson",
-    "email": "marcus.olsson@hey.com",
-    "url": "https://marcus.se.net"
+    "name": "Alex Gonzales",
+    "email": "musigonzales@gmail.com"
   },
   "dependencies": {
-    "@emotion/css": "11.10.6",
+    "@emotion/css": "11.7.1",
     "@grafana/data": "^11.5.1",
     "@grafana/runtime": "^11.5.1",
     "@grafana/schema": "^11.5.1",

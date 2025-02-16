@@ -1,12 +1,12 @@
 {
   "$schema": "https://github.com/grafana/grafana/raw/main/docs/sources/developers/plugins/plugin.schema.json",
   "type": "panel",
-  "name": "Gantt",
-  "id": "marcusolsson-gantt-panel",
+  "name": "Gantt (Stacked)",
+  "id": "grafana-stacked-gantt-panel",
   "info": {
     "description": "Tasks and processes over time",
     "author": {
-      "name": "Marcus Olsson"
+      "name": "Alex Gonzales"
     },
     "keywords": ["panel", "gantt"],
     "logos": {
@@ -14,8 +14,8 @@
       "large": "img/logo.svg"
     },
     "links": [
-      { "name": "Website", "url": "https://github.com/marcusolsson/grafana-gantt-panel" },
-      { "name": "License", "url": "https://github.com/marcusolsson/grafana-gantt-panel/blob/main/LICENSE" }
+      { "name": "Website", "url": "https://github.com/azagon63/grafana-stacked-gantt-panel" },
+      { "name": "License", "url": "https://github.com/azagon63/grafana-stacked-gantt-panel/blob/main/LICENSE" }
     ],
     "screenshots": [
       { "name": "Gantt (Dark)", "path": "img/dark.png" },

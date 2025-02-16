@@ -1,26 +1,19 @@
-# Gantt for Grafana
+# Stacked Gantt chart for Grafana
 
-[![Build](https://github.com/marcusolsson/grafana-gantt-panel/workflows/CI/badge.svg)](https://github.com/marcusolsson/grafana-gantt-panel/actions?query=workflow%3A%22CI%22)
-[![Release](https://github.com/marcusolsson/grafana-gantt-panel/workflows/Release/badge.svg)](https://github.com/marcusolsson/grafana-gantt-panel/actions?query=workflow%3ARelease)
-[![Marketplace](https://img.shields.io/badge/dynamic/json?logo=grafana&color=F47A20&label=marketplace&prefix=v&query=%24.items%5B%3F%28%40.slug%20%3D%3D%20%22marcusolsson-gantt-panel%22%29%5D.version&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins)](https://grafana.com/grafana/plugins/marcusolsson-gantt-panel)
-[![Downloads](https://img.shields.io/badge/dynamic/json?logo=grafana&color=F47A20&label=downloads&query=%24.items%5B%3F%28%40.slug%20%3D%3D%20%22marcusolsson-gantt-panel%22%29%5D.downloads&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins)](https://grafana.com/grafana/plugins/marcusolsson-gantt-panel)
-[![License](https://img.shields.io/github/license/marcusolsson/grafana-gantt-panel)](LICENSE)
-[![Twitter](https://img.shields.io/twitter/follow/marcusolsson?color=%231DA1F2&label=twitter&style=plastic)](https://twitter.com/marcusolsson)
-![Maintenance](https://img.shields.io/maintenance/no/2022?style=plastic)
-
-> **Maintenance**: As I'm no longer working at Grafana Labs, nor am I using Grafana where I'm at now, **I'm no longer able to actively maintain this plugin**. I'm exploring ways to keep the project going. Check back here to stay updated!
-
-A panel plugin for [Grafana](https://grafana.com) to visualize Gantt charts.
+A panel plugin for [Grafana](https://grafana.com) to visualize stacked Gantt charts.
 
 Gantt charts display a list of _tasks over time_, where each task is visualized using a bar with a start and an end time.
+
+This plugin is based on the original Gantt chart plugin by Marcus Olsson: https://github.com/marcusolsson/grafana-gantt-panel
 
 ## Features
 
 - Identify bottlenecks where one or more tasks are running significantly longer than others
 - Compare recurring sets of tasks by grouping them, such as data pipelines that run in regular intervals.
+- Display concurrency of tasks to identify resource usage or workload.
 - Display additional metadata from your data source as labels
 
-![Screenshot](https://github.com/marcusolsson/grafana-gantt-panel/raw/main/src/img/dark.png)
+![Screenshot](https://github.com/azagon63/grafana-stacked-gantt-panel/raw/main/src/img/dark.png)
 
 ## Configuration
 
@@ -50,9 +43,8 @@ As some data sources don't yet support time fields, the plugin supports selectin
 
 #### Display
 
-| Option           | Description                                                                        |
-|------------------|------------------------------------------------------------------------------------|
-| _Show Y-axis_    | Toggles the Y-axis.                                                                |
-| _Sort by_        | Dimension to sort tasks by.                                                        |
-| _Sort order_     | Order in which to sort the tasks.                                                  |
-| _Color mappings_ | Configures task color based on the text value based on the **Color by** dimension. |
+| Option            | Description                                                                        |
+|-------------------|------------------------------------------------------------------------------------|
+| _Show Y-axis_     | Toggles the Y-axis.                                                                |
+| _Stack direction_ | Direction to stack tasks for visual clarity.                                       |
+| _Color mappings_  | Configures task color based on the text value based on the **Color by** dimension. |
