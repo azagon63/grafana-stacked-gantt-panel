@@ -26,6 +26,7 @@ work/
 ci/
 e2e-results/
 *.zip
+*.md5
 
 # Editors
 .idea

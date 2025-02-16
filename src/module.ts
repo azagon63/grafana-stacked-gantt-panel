@@ -70,16 +70,11 @@ export const plugin = getPanelPluginOrFallback(
           filterByType: [FieldType.time, FieldType.string, FieldType.number],
         },
       })
-      .addCustomEditor({
-        id: 'colorByField',
+      .addTextInput({
         path: 'colorByField',
         name: 'Color by',
         description: 'Field to use for colors. Defaults to the text field.',
-        editor: FieldSelectEditor,
         category: ['Dimensions'],
-        settings: {
-          filterByType: [FieldType.string, FieldType.number],
-        },
       })
       .addCustomEditor({
         id: 'groupByField',

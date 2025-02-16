@@ -24,6 +24,7 @@ export const GanttPanel: React.FC<Props> = ({
   timeRange,
   onChangeTimeRange,
   timeZone,
+  replaceVariables,
 }) => {
   const theme = useTheme2().v1;
 
@@ -84,7 +85,8 @@ export const GanttPanel: React.FC<Props> = ({
     );
   }
 
-  const colorByField = options.colorByField ? frame.fields.find((f) => f.name === options.colorByField) : textField;
+  const colorByFieldName = replaceVariables(options.colorByField)
+  const colorByField = options.colorByField ? frame.fields.find((f) => f.name === colorByFieldName) : textField;
 
   // Optional dimensions.
   const groupByField = frame.fields.find((f) => f.name === options.groupByField);
