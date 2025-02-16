@@ -104,8 +104,7 @@ export const GanttPanel: React.FC<Props> = ({
       height={height}
       onChangeTimeRange={onChangeTimeRange}
       experiments={options.experiments}
-      sortBy={options.sortBy}
-      sortOrder={options.sortOrder}
+      stackDirection={options.stackDirection}
       colors={colors}
       showYAxis={options.showYAxis}
     />

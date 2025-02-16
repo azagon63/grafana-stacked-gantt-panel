@@ -15,7 +15,7 @@ import { getFormattedDisplayValue, measureText } from 'grafana-plugin-support';
 import humanizeDuration from 'humanize-duration';
 import React, { useRef, useState } from 'react';
 import { GanttTask } from './GanttTask';
-import { labelColor } from './helpers';
+import { labelColor, PriorityQueue } from './helpers';
 
 type Point = {
   x: number;
@@ -37,8 +37,7 @@ interface Props {
   timeZone: string;
   onChangeTimeRange: (timeRange: AbsoluteTimeRange) => void;
 
-  sortBy: any;
-  sortOrder: any;
+  stackDirection: any;
   colors?: Array<{ text: string; color: string }>;
 
   showYAxis: boolean;
@@ -59,8 +58,7 @@ export const GanttChart = ({
   timeZone,
   onChangeTimeRange,
   experiments,
-  sortBy,
-  sortOrder,
+  stackDirection,
   colors,
   showYAxis,
 }: Props) => {
@@ -145,19 +143,25 @@ export const GanttChart = ({
   });
 
   const sortedIndexes = visibleIndexes.sort((a, b) => {
-    const [i, j] = sortOrder === 'asc' ? [a, b] : [b, a];
-
-    switch (sortBy) {
-      case 'text':
-        return textField.values.get(i).localeCompare(textField.values.get(j));
-      case 'startTime':
-        return startField.values.get(i) - startField.values.get(j);
-      default:
-        return i - j;
-    }
+    return startField.values.get(a) - startField.values.get(b);
   });
 
-  const taskLabels = [...new Set(sortedIndexes.map((_) => textField.values.get(_)))];
+  const tiers = new Map();
+  const free_tiers = new PriorityQueue<String>(true);
+  const end_times = new PriorityQueue<String>(true);
+  var high_tier = 1;
+  for (const task of sortedIndexes) {
+    while ((end_times.peekPriority() || Number.MAX_VALUE) <= startField.values.get(task)) {
+      free_tiers.add(Number(end_times.peek() || ""), end_times.poll() || "");
+    }
+    tiers.set(task, free_tiers.poll() || String(high_tier++).padStart(3, '0'));
+    end_times.add(endField.values.get(task), tiers.get(task));
+  }
+
+  const taskLabels = [...new Set(tiers.values())];
+  if (stackDirection === 'up') {
+    taskLabels.reverse();
+  }
   const widestLabel = d3.max(taskLabels.map((_) => measureText(_, theme.typography.size.sm)?.width ?? 0)) ?? 0;
 
   const padding = {
@@ -312,7 +316,7 @@ export const GanttChart = ({
 
             const taskBarPos = {
               x: pixelStartX + padding.left,
-              y: scaleY(label) ?? 0,
+              y: scaleY(tiers.get(i)) ?? 0,
             };
 
             const tooltipContent = (

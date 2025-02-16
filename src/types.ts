@@ -1,5 +1,4 @@
-type SortBy = 'text' | 'startTime';
-type SortOrder = 'asc' | 'desc';
+type StackDirection = 'up' | 'down';
 
 export interface GanttOptions {
   textField?: string;
@@ -8,8 +7,7 @@ export interface GanttOptions {
   colorByField?: string;
   groupByField?: string;
   labelFields: string[];
-  sortBy: SortBy;
-  sortOrder: SortOrder;
+  stackDirection: StackDirection;
   showYAxis: boolean;
 
   colors?: Array<{ text: string; color: string }>;

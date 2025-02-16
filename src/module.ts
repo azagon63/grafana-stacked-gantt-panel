@@ -109,39 +109,20 @@ export const plugin = getPanelPluginOrFallback(
         defaultValue: true,
       })
       .addSelect({
-        path: 'sortBy',
-        name: 'Sort by',
-        defaultValue: 'startTime',
+        path: 'stackDirection',
+        name: 'Stack Direction',
+        defaultValue: 'up',
         settings: {
           options: [
             {
-              label: 'Text',
-              value: 'text',
-              description: 'Sort tasks alphabetically by their text',
+              label: 'Up',
+              value: 'up',
+              description: 'Tasks will be stacked upwards, with height representing concurrency',
             },
             {
-              label: 'Start time',
-              value: 'startTime',
-              description: 'Sort tasks chronologically by their start time',
-            },
-          ],
-        },
-      })
-      .addSelect({
-        path: 'sortOrder',
-        name: 'Sort order',
-        defaultValue: 'asc',
-        settings: {
-          options: [
-            {
-              label: 'Ascending',
-              value: 'asc',
-              description: 'A-Z if sorting by text, or oldest to most recent if sorting by time',
-            },
-            {
-              label: 'Descending',
-              value: 'desc',
-              description: 'Z-A if sorting by text, or most recent to oldest if sorting by time',
+              label: 'Down',
+              value: 'down',
+              description: 'Tasks will be stacked downwards, with depth representing concurrency',
             },
           ],
         },
